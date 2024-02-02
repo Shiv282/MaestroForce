@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function addApartment() {
+            var name = document.getElementById('apartmentName').value;
+            fetch('/addApartment', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "name": name })
+            }).then(response => console.log(response))
+        }
+        function getApartment() {
+            var name = document.getElementById('apartmentName').value;
+            fetch('/getApartment/'+name)
+            .then(response => console.log(response))
+        }
+        function deleteApartment() {
+            var name = document.getElementById('apartmentName').value;
+            fetch('/deleteApartment/'+name,{
+                method: "DELETE"
+            })
+            .then(response => console.log(response))
+        }
+    </script>
+</head>
+<body>
+    <input id="apartmentName" type="text">
+    <input id="submit" type="button" value="AddApartment" onclick="addApartment()">
+    <input id="submit2" type="button" value="GetApartmentInfo" onclick="getApartment()">
+    <input id="submit2" type="button" value="DelApartmentInfo" onclick="deleteApartment()">
+</body>
+</html>

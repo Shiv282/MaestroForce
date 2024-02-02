@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function addSupervisor() {
+            var name = document.getElementById('supervisorName').value;
+            fetch('/addSupervisor', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "name": name })
+            }).then(response => console.log(response))
+        }
+        function getSupervisor() {
+            var name = document.getElementById('supervisorName').value;
+            fetch('/getSupervisor/'+name)
+            .then(response => console.log(response))
+        }
+        function deleteSupervisor() {
+            var name = document.getElementById('supervisorName').value;
+            fetch('/deleteSupervisor/'+name,{
+                method: "DELETE"
+            })
+            .then(response => console.log(response))
+        }
+    </script>
+</head>
+<body>
+    <input id="supervisorName" type="text">
+    <input id="submit" type="button" value="AddSupervisor" onclick="addSupervisor()">
+    <input id="submit2" type="button" value="GetSupervisorInfo" onclick="getSupervisor()">
+    <input id="submit2" type="button" value="DelSupervisorInfo" onclick="deleteSupervisor()">
+</body>
+</html>
